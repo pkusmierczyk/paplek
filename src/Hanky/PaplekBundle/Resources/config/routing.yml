@@ -1,0 +1,3 @@
+hanky_paplek_homepage:
+    pattern:  /
+    defaults: { _controller: HankyPaplekBundle:Default:index }

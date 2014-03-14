@@ -1,0 +1,4 @@
+hanky_paplek:
+    resource: "@HankyPaplekBundle/Resources/config/routing.yml"
+    prefix:   /
+
