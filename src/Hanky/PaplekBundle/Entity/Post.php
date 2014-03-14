@@ -8,11 +8,20 @@
 
 namespace Hanky\PaplekBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * @ORM\Entity
  * @ORM\Table(name="post")
  */
 class Post {
+
+    public function __construct()
+    {
+        $this->comments = new ArrayCollection();
+    }
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -21,12 +30,107 @@ class Post {
     protected $id;
 
     /**
-     * @ORM\Column(type="string", length=127)
+     * @ORM\Column(type="string", length=127, nullable=false)
      */
     protected $content;
 
     /**
-     * @ORM\Column(type="string", scale=31)
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="posts")
+     * @ORM\JoinColumn(name="author_id", referencedColumnName="id", nullable=false)
      */
-    protected $authorId;
-} 
+    protected $author;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="post")
+     */
+    protected $comments;
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set content
+     *
+     * @param string $content
+     * @return Post
+     */
+    public function setContent($content)
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    /**
+     * Get content
+     *
+     * @return string 
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \Hanky\PaplekBundle\Entity\User $author
+     * @return Post
+     */
+    public function setAuthor(\Hanky\PaplekBundle\Entity\User $author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Hanky\PaplekBundle\Entity\User 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Add comments
+     *
+     * @param \Hanky\PaplekBundle\Entity\Comment $comments
+     * @return Post
+     */
+    public function addComment(\Hanky\PaplekBundle\Entity\Comment $comments)
+    {
+        $this->comments[] = $comments;
+
+        return $this;
+    }
+
+    /**
+     * Remove comments
+     *
+     * @param \Hanky\PaplekBundle\Entity\Comment $comments
+     */
+    public function removeComment(\Hanky\PaplekBundle\Entity\Comment $comments)
+    {
+        $this->comments->removeElement($comments);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getComments()
+    {
+        return $this->comments;
+    }
+}
