@@ -1,1 +1,18 @@
-{{ name }}
+{% for post in posts %}
+    <div>
+        <div>
+            <p>{{ post.content }}</p>
+            {{ post.author.login }}
+            {{ post.createdAt.format('d-m-Y H:i:s') }}
+        </div>
+        <div>
+            {% for comment in post.comments %}
+                <div>
+                    {{ comment.content }}
+                    {{ comment.author.login }}
+                    {{ comment.author.createdAt.format('d-m-Y H:i:s') }}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endfor %}

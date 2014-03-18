@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Entity(repositoryClass="Hanky\PaplekBundle\Entity\PostRepository")
- * @ORM\HasLifecycleCallbacks()
+ * @ORM\HasLifeCycleCallbacks()
  * @ORM\Table(name="post")
  */
 class Post {
