@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Hanky\PaplekBundle\Form\LoginForm;
 use Hanky\PaplekBundle\Form\RegisterForm;
 use Symfony\Component\HttpFoundation\Request;
+use Hanky\PaplekBundle\Entity\User;
 
 class DefaultController extends Controller
 {
@@ -42,9 +43,21 @@ class DefaultController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            var_dump($form->get('login'));exit;
+            $formData = $form->getData();
 
-            return $this->redirect($this->generateUrl('hanky_paplek_homepage'));
+            $user = new User();
+            $user->setLogin($formData['login']);
+            $user->setEmail($formData['email']);
+            $user->setPasswd($formData['passwd']);
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->render('HankyPaplekBundle:Default:registerSuccess.html.twig', array(
+                'email' => $user->getEmail(),
+                'login' => $user->getLogin()
+            ));
         }
 
         return $this->render('HankyPaplekBundle:Default:register.html.twig', array(

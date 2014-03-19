@@ -1,9 +1,0 @@
-Hanky\PaplekBundle\Form\LoginForm:
-    properties:
-        username:
-            - NotBlank: ~
-        password:
-            - NotBlanl: ~
-            - Length:
-                min: 3
-                max: 20

@@ -207,7 +207,7 @@ class User {
     /**
      * @ORM\PrePersist
      */
-    public function setCreatedAt()
+    public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
     }
