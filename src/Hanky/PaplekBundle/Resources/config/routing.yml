@@ -1,3 +1,11 @@
 hanky_paplek_homepage:
     pattern:  /
     defaults: { _controller: HankyPaplekBundle:Default:index }
+
+hanky_paplek_login:
+    path: /login
+    defaults: { _controller: HankyPaplekBundle:Default:login }
+
+hanky_paplek_register:
+    path: /register
+    defaults: { _controller: HankyPaplekBundle:Default:register }
