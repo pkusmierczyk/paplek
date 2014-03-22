@@ -6,6 +6,18 @@ hanky_paplek_login:
     path: /login
     defaults: { _controller: HankyPaplekBundle:Default:login }
 
+hanky_paplek_logout:
+    path: /logout
+    defaults: { _controller: HankyPaplekBundle:Default:logout }
+
 hanky_paplek_register:
     path: /register
     defaults: { _controller: HankyPaplekBundle:Default:register }
+
+hanky_paplek_post:
+    path: /post
+    defaults: { _controller: HankyPaplekBundle:Default:post }
+
+hanky_paplek_comment:
+    path: /comment/{id}
+    defaults: { _controller: HankyPaplekBundle:Default:comment }
