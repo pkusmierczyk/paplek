@@ -1,2 +1,8 @@
-<p>Napisz post!</p>
-{{ form(form) }}
+{% extends '::base.html.twig' %}
+
+{% block body %}
+    <div class="post-form">
+        <p>Napisz post!</p>
+        {{ form(form) }}
+    </div>
+{% endblock %}

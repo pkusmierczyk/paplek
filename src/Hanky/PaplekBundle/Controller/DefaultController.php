@@ -16,18 +16,24 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-//        $session = $request->getSession();
-//        var_dump($session->get('id'));exit;
+        $session = $request->getSession();
+        $isLogged = $session->get('id');
 
         $posts = $this->getDoctrine()
             ->getRepository('HankyPaplekBundle:Post')
             ->findAll();
 
-        return $this->render('HankyPaplekBundle:Default:index.html.twig', array('posts' => $posts));
+        return $this->render('HankyPaplekBundle:Default:index.html.twig', array(
+            'posts' => $posts,
+            'isLogged' => isset($isLogged)
+        ));
     }
 
     public function loginAction(Request $request)
     {
+        $session = $request->getSession();
+        $isLogged = $session->get('id');
+
         $form = $this->createForm(new LoginForm());
 
         $form->handleRequest($request);
@@ -48,7 +54,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('HankyPaplekBundle:Default:login.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'isLogged' => isset($isLogged)
         ));
     }
 
@@ -57,11 +64,16 @@ class DefaultController extends Controller
 
         $session->clear();
 
-        return $this->render('HankyPaplekBundle:Default:logout.html.twig');
+        return $this->render('HankyPaplekBundle:Default:logout.html.twig', array(
+            'isLogged' => false,
+        ));
     }
 
     public function registerAction(Request $request)
     {
+        $session = $request->getSession();
+        $userId = $session->get('id');
+
         $form = $this->createForm(new RegisterForm());
 
         $form->handleRequest($request);
@@ -85,7 +97,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('HankyPaplekBundle:Default:register.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'isLogged' => isset($userId),
         ));
     }
 
@@ -93,6 +106,7 @@ class DefaultController extends Controller
     {
         $session = $request->getSession();
         $userId = $session->get('id');
+
         if (isset($userId)) {
             $user = $this->getDoctrine()->getRepository('HankyPaplekBundle:User')->findOneById($userId);
 
@@ -116,7 +130,8 @@ class DefaultController extends Controller
             }
 
             return $this->render('HankyPaplekBundle:Default:post.html.twig', array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'isLogged' => isset($userId)
             ));
         } else {
             return $this->redirect($this->generateUrl('hanky_paplek_homepage'));
@@ -126,6 +141,7 @@ class DefaultController extends Controller
     public function commentAction(Request $request, $id) {
         $session = $request->getSession();
         $userId = $session->get('id');
+
         if (isset($userId)) {
             $user = $this->getDoctrine()->getRepository('HankyPaplekBundle:User')->findOneById($userId);
             $post = $this->getDoctrine()->getRepository('HankyPaplekBundle:Post')->findOneById($id);
@@ -149,8 +165,9 @@ class DefaultController extends Controller
                 return $this->redirect($this->generateUrl('hanky_paplek_homepage'));
             }
 
-            return $this->render('HankyPaplekBundle:Default:post.html.twig', array(
-                'form' => $form->createView()
+            return $this->render('HankyPaplekBundle:Default:comment.html.twig', array(
+                'form' => $form->createView(),
+                'isLogged' => isset($userId)
             ));
         } else {
             return $this->redirect($this->generateUrl('hanky_paplek_homepage'));

@@ -63,7 +63,7 @@ class RegisterForm extends AbstractType
                     new NotBlank()
                 )
             ))
-            ->add('save', 'submit');
+            ->add('Zarejestruj', 'submit');
     }
 
     public function getName()

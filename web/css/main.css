@@ -1,0 +1,138 @@
+body {
+    margin: 0 auto;
+    background-color: #70B870;
+    color: white;
+}
+
+.header-logo {
+    padding: 20px;
+}
+
+.logo {
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.header {
+    width: 100%;
+    background-color: green;
+    float: left;
+    margin-bottom: 20px;
+}
+
+.header div {
+    float: right;
+    height: 100%;
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.header div a {
+    color: white;
+    text-decoration: none;
+}
+
+.content {
+    width: 400px;
+    margin: 0 30% auto;
+    clear: both;
+}
+
+.footer {
+    width: 100%;
+    background-color: green;
+    font-size: 8px;
+    font-style: italic;
+    text-align: right;
+    vertical-align: text-bottom;
+    height: 20px;
+    margin-top: 10px;
+}
+
+.post, .login-form, .register-form, .post-form, .comment-form {
+    padding: 10px;
+    border: green 3px solid;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.core-post {
+    padding: 10px;
+    border: green 3px dotted;
+    border-radius: 20px;
+    margin: 3px;
+}
+
+.post-content, .post-comment {
+    text-align: center;
+}
+
+.post-author {
+    text-align: right;
+    font-size: 14px;
+    font-style: italic;
+}
+
+.post-time {
+    font-size: 10px;
+    font-style: italic;
+}
+
+.comment {
+    margin: 3px;
+}
+
+.comment-author {
+    font-size: 14px;
+    font-style: italic;
+    margin: 0px;
+}
+
+.comment-time {
+    text-align: right;
+    font-size: 10px;
+    font-style: italic;
+    margin-top: 0px;
+}
+
+.comment-content {
+    margin-bottom: 3px;
+}
+
+.login-form, .register-form, .post-form, .comment-form {
+    text-align: center;
+}
+
+.login-form p, .register-form p, .post-form p, .comment-form p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#login label, #post label {
+    margin-right: 10px;
+}
+
+#post textarea, #comment textarea {
+    vertical-align: top;
+    width: 175px;
+    resize: none;
+}
+
+#register label, #comment textarea {
+    width: 125px;
+    display: inline-block;
+}
+
+#comment label {
+    margin-right: 10px
+}
+
+#post div:first-child, #comment div:first-child {
+    margin-bottom: 10px;
+}
+
+.post-comment a {
+    color: white;
+}
